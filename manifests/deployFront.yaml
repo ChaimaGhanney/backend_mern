@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: reactjs-container
-          image: chaima44/frontend:5  
+          image: chaima44/frontend:5  #chnbadlou l apis wnaawed npushy !
           ports:
             - containerPort: 80
 ---

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: backend-app
-        image: chaima44/backend:31
+        image: chaima44/backend:25
         ports:
         - containerPort: 4000
 ---
