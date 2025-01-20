@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: reactjs-container
-          image: chaima44/frontend:30
+          image: chaima44/frontend:31
           ports:
             - containerPort: 80
 ---
