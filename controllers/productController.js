@@ -39,7 +39,7 @@ export const addProductWithImage = async (req, res) => {
     // Save the product to database
     await newProduct.save();
   } catch (error) {
-    console.error("Error adding product:", error);
+    console.error("Error adding Employee:", error);
     return res.sendStatus(500);
   }
 };
@@ -62,7 +62,7 @@ export const uploadProductImage = async (req, res) => {
       return res.sendStatus(200);
     });
   } catch (error) {
-    console.error("Error adding product:", error);
+    console.error("Error adding employee:", error);
     return res.sendStatus(500);
   }
 };
@@ -74,10 +74,10 @@ export const getallProductsByUser = async (req, res) => {
     res.status(200).json({ array: userProducts });
     console.log(userProducts);
   } catch (error) {
-    console.error("Error fetching user products:", error);
+    console.error("Error fetching user employees:", error);
     res
       .status(500)
-      .json({ error: "An error occurred while fetching products" });
+      .json({ error: "An error occurred while fetching employees" });
   }
 };
 
@@ -92,20 +92,20 @@ export const deleteProductByUSer = async (req, res) => {
 
     // Check if the product exists and belongs to the authenticated user
     if (!product) {
-      return res.status(404).json({ error: "Product not found" });
+      return res.status(404).json({ error: "employee not found" });
     }
     if (product.user.toString() !== userId.toString()) {
       return res
         .status(403)
-        .json({ error: "Unauthorized to delete this product" });
+        .json({ error: "Unauthorized to delete this employee" });
     }
 
     // Delete the product
     await produits.findByIdAndDelete(productId);
     res.sendStatus(200);
-    console.log(`Product ${productId} deleted by user ${userId}`);
+    console.log(`Employee ${productId} deleted by user ${userId}`);
   } catch (error) {
-    console.error("Error deleting product:", error);
+    console.error("Error deleting employee:", error);
     res.sendStatus(500);
   }
 };
@@ -118,13 +118,13 @@ export const updateProductByUser = async (req, res) => {
     const product = await produits.findById(id);
 
     if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+      return res.status(404).json({ message: "Employee not found" });
     }
 
     if (product.user.toString() !== userId.toString()) {
       return res
         .status(403)
-        .json({ message: "You are not authorized to update this product" });
+        .json({ message: "You are not authorized to update this employee" });
     }
 
     await produits.findByIdAndUpdate(id, req.body, { new: true });
@@ -206,7 +206,7 @@ export const countOutOfStockPrices = async (req, res) => {
     res.status(200).json({ totalPrice });
   } catch (error) {
     console.error("Error fetching out-of-stock prices:", error);
-    res.status(500).json({ message: "An error occurred while fetching out-of-stock prices" });
+    res.status(500).json({ message: "An error occurred while fetching absent employee" });
   }
 };
 
@@ -219,8 +219,8 @@ export const countAllPrices = async (req, res) => {
     const totalPrice = result.length > 0 ? result[0].totalPrice : 0;
     res.status(200).json({ totalPrice });
   } catch (error) {
-    console.error("Error fetching total prices:", error);
-    res.status(500).json({ message: "An error occurred while fetching total prices" });
+    console.error("Error fetching total :", error);
+    res.status(500).json({ message: "An error occurred while fetching total " });
   }
 };
 // +++++++++++++++++ BY_THE_ADMIN ++++++++++++++++++++++++++++++++++++++
@@ -258,7 +258,7 @@ export const updateProduct = async (req, res) => {
   await produits
     .findByIdAndUpdate(id, req.body)
     .then((result) => {
-      res.status(200).send({ message: "Product updated successfully!" });
+      res.status(200).send({ message: "Employee updated successfully!" });
     })
     .catch((error) => {
       console.log(error);
